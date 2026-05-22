@@ -1,0 +1,39 @@
+.tool-container { padding: 20px; max-width: 600px; margin: 0 auto; font-family: sans-serif; }
+textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+button { padding: 10px 20px; background: #007acc; color: white; border: none; cursor: pointer; }
+#output { 
+    background: #eee; padding: 10px; margin-top: 10px; 
+    white-space: pre-wrap; direction: ltr; text-align: left; font-family: monospace; 
+}
+/* إجبار مناطق عرض الكود على أن تكون من اليسار لليمين دائماً */
+#output, #rgbOutput {
+    direction: ltr !important; 
+    text-align: left !important;
+    font-family: 'Courier New', Courier, monospace; /* خط مناسب للبرمجة */
+    background-color: #2d2d2d; /* لون خلفية داكن ليعطي طابعاً احترافياً */
+    color: #f8f8f2; /* لون نص فاتح */
+    padding: 15px;
+    border-radius: 5px;
+}
+.tool-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+/* تنسيق كل خانات النتائج (pre و p) */
+pre, #output, #rgbOutput, #htmlOutput, #timeOutput {
+    direction: ltr !important; /* لضمان ظهور الكود من اليسار لليمين */
+    text-align: left !important;
+    background-color: #f8f9fa; /* خلفية رمادية فاتحة جداً وواضحة */
+    color: #333; /* لون الخط أسود داكن (ليس باهتاً) */
+    font-weight: bold; /* جعل الخط سميكاً ليظهر بوضوح */
+    padding: 15px;
+    border: 1px solid #ccc; /* إطار واضح حول النتيجة */
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 40px; /* ضمان وجود مساحة للنتيجة */
+    margin-top: 10px;
+    display: block;
+}

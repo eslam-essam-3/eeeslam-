@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>منصة الأدوات</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="tool-container">
+        <h2>ملمع الكود</h2>
+        <textarea id="codeInput" placeholder="ضع كود JSON هنا..."></textarea>
+        <button id="formatBtn">تنسيق الكود</button>
+        <pre id="output"></pre>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+<hr>
+<div class="tool-container">
+    <h2>محول الألوان (Hex to RGB)</h2>
+    <input type="text" id="hexInput" placeholder="#ffffff">
+    <button id="colorBtn">تحويل</button>
+    <p id="rgbOutput"></p>
+</div>
+</body>
+</html>
+<div class="tool-card">
+    <h2>ترميز HTML</h2>
+    <textarea id="htmlInput" placeholder="اكتب كود HTML هنا..."></textarea>
+    <button id="htmlBtn">ترميز</button>
+    <pre id="htmlOutput"></pre>
+</div>
+
+<div class="tool-card">
+    <h2>محول التوقيت (Timestamp)</h2>
+    <input type="text" id="timeInput" placeholder="ادخل رقم التوقيت...">
+    <button id="timeBtn">تحويل للتاريخ</button>
+    <p id="timeOutput"></p>
+</div>
