@@ -1,4 +1,4 @@
-import * as Tools from './tools/index.js';
+import * as Tools from './index.js';
 
 // 1. ملمع الكود
 document.getElementById('formatBtn').addEventListener('click', () => {
