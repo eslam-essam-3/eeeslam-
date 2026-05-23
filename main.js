@@ -25,13 +25,28 @@ document.getElementById('timeBtn').addEventListener('click', () => {
 });
 document.querySelectorAll('.copyBtn').forEach(btn => {
     btn.addEventListener('click', () => {
+        // 1. تحديد المربع الهدف بناءً على data-target
         const targetId = btn.getAttribute('data-target');
-        const textToCopy = document.getElementById(targetId).textContent;
+        const targetElement = document.getElementById(targetId);
         
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            const originalText = btn.textContent;
-            btn.textContent = "تم النسخ!";
-            setTimeout(() => btn.textContent = originalText, 2000);
-        });
+        if (targetElement) {
+            const textToCopy = targetElement.textContent || targetElement.value;
+            
+            // 2. محاولة النسخ
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = "تم النسخ!";
+                btn.style.backgroundColor = "#27ae60"; // لون أخضر للنجاح
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = ""; // يعود للونه الأصلي
+                }, 2000);
+            }).catch(err => {
+                console.error('فشل النسخ: ', err);
+            });
+        } else {
+            console.error("خطأ: لم أجد المربع الذي يحمل id=" + targetId);
+        }
     });
 });
