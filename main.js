@@ -26,11 +26,21 @@ document.querySelectorAll('.copyBtn').forEach(btn => {
         const targetId = btn.getAttribute('data-target');
         const element = document.getElementById(targetId);
         
-        if (element && element.textContent.trim() !== "") {
-            navigator.clipboard.writeText(element.textContent).then(() => {
+        // نستخدم innerText لجلب النص الذي يراه المستخدم فعلياً في الصفحة
+        const textToCopy = element ? element.innerText : "";
+        
+        if (textToCopy && textToCopy.trim() !== "") {
+            navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalText = btn.textContent;
                 btn.textContent = "تم النسخ!";
-                setTimeout(() => btn.textContent = originalText, 2000);
+                btn.style.backgroundColor = "#27ae60"; // لون أخضر للنجاح
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = ""; // يعود للونه الأصلي
+                }, 2000);
+            }).catch(err => {
+                console.error("خطأ في النسخ:", err);
             });
         } else {
             alert("لا يوجد نص للنسخ! تأكد من توليد النتيجة أولاً.");
