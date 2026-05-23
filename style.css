@@ -37,3 +37,17 @@ pre, #output, #rgbOutput, #htmlOutput, #timeOutput {
     margin-top: 10px;
     display: block;
 }
+.copyBtn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+
+.copyBtn:hover {
+    background-color: #2ecc71;
+}

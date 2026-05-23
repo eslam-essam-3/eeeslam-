@@ -23,3 +23,15 @@ document.getElementById('timeBtn').addEventListener('click', () => {
     const input = document.getElementById('timeInput').value;
     document.getElementById('timeOutput').textContent = Tools.convertTimestamp(input);
 });
+document.querySelectorAll('.copyBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const textToCopy = document.getElementById(targetId).textContent;
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalText = btn.textContent;
+            btn.textContent = "تم النسخ!";
+            setTimeout(() => btn.textContent = originalText, 2000);
+        });
+    });
+});
