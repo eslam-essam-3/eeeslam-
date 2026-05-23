@@ -25,28 +25,22 @@ document.getElementById('timeBtn').addEventListener('click', () => {
 });
 document.querySelectorAll('.copyBtn').forEach(btn => {
     btn.addEventListener('click', () => {
-        // 1. تحديد المربع الهدف بناءً على data-target
         const targetId = btn.getAttribute('data-target');
         const targetElement = document.getElementById(targetId);
         
-        if (targetElement) {
-            const textToCopy = targetElement.textContent || targetElement.value;
-            
-            // 2. محاولة النسخ
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const originalText = btn.textContent;
-                btn.textContent = "تم النسخ!";
-                btn.style.backgroundColor = "#27ae60"; // لون أخضر للنجاح
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.backgroundColor = ""; // يعود للونه الأصلي
-                }, 2000);
-            }).catch(err => {
-                console.error('فشل النسخ: ', err);
-            });
-        } else {
-            console.error("خطأ: لم أجد المربع الذي يحمل id=" + targetId);
+        // هنا التعديل: نستخدم innerText لأنه أكثر دقة مع المربعات
+        let textToCopy = targetElement.innerText || targetElement.textContent;
+
+        // اختبار إذا كان النص فارغاً
+        if (!textToCopy || textToCopy.trim() === "") {
+            alert("لا يوجد نص لنسخه! تأكد من تشغيل الأداة أولاً.");
+            return;
         }
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalText = btn.textContent;
+            btn.textContent = "تم النسخ!";
+            setTimeout(() => btn.textContent = originalText, 2000);
+        });
     });
 });
