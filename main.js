@@ -44,3 +44,36 @@ document.querySelectorAll('.copyBtn').forEach(btn => {
         });
     });
 });
+// دالة التشغيل الموحدة
+function attachTool(btnId, inputId, outputId, toolFunc) {
+    const btn = document.getElementById(btnId);
+    if (btn) {
+        btn.addEventListener('click', () => {
+            const input = document.getElementById(inputId).value;
+            const output = document.getElementById(outputId);
+            output.textContent = toolFunc(input);
+        });
+    }
+}
+
+// ربط الأدوات
+attachTool('formatBtn', 'codeInput', 'output', Tools.formatJSON);
+attachTool('colorBtn', 'hexInput', 'rgbOutput', Tools.hexToRgb);
+attachTool('htmlBtn', 'htmlInput', 'htmlOutput', Tools.encodeHTML);
+attachTool('timeBtn', 'timeInput', 'timeOutput', Tools.convertTimestamp);
+
+// كود النسخ الذكي (يعمل مع أي data-target)
+document.querySelectorAll('.copyBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const element = document.getElementById(targetId);
+        if (element && element.textContent) {
+            navigator.clipboard.writeText(element.textContent);
+            const original = btn.textContent;
+            btn.textContent = "تم النسخ!";
+            setTimeout(() => btn.textContent = original, 2000);
+        } else {
+            alert("لا يوجد نص لنسخه!");
+        }
+    });
+});
