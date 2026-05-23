@@ -5,8 +5,12 @@ function attachTool(btnId, inputId, outputId, toolFunc) {
     const btn = document.getElementById(btnId);
     if (btn) {
         btn.addEventListener('click', () => {
-            const val = document.getElementById(inputId).value;
-            document.getElementById(outputId).textContent = toolFunc(val);
+            const input = document.getElementById(inputId).value;
+            const outputElement = document.getElementById(outputId);
+            if (outputElement) {
+                // نستخدم trim() لإزالة أي فراغات زائدة قد تكسر الشكل
+                outputElement.textContent = toolFunc(input); 
+            }
         });
     }
 }
@@ -22,17 +26,17 @@ document.querySelectorAll('.copyBtn').forEach(btn => {
         const targetId = btn.getAttribute('data-target');
         const element = document.getElementById(targetId);
         
-        // استخدام innerText لجلب النص الذي يظهر للمستخدم
+        // جلب النص باستخدام innerText
         const textToCopy = element ? element.innerText : "";
 
-        if (textToCopy && textToCopy.trim() !== "") {
+        if (textToCopy && textToCopy.trim().length > 0) {
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const original = btn.textContent;
                 btn.textContent = "تم النسخ!";
                 setTimeout(() => btn.textContent = original, 2000);
             });
         } else {
-            alert("لا يوجد نص للنسخ!");
+            alert("لا يوجد نص للنسخ! تأكد من معالجة الكود أولاً.");
         }
     });
 });
